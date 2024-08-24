@@ -1,0 +1,70 @@
+*{
+  box-sizing: border-box;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+#calculadora{
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: solid 1px #cacaca;
+  padding: 4px;
+  gap: 8px;
+  box-shadow: 1px 1px 1px #cacaca;
+  border-radius: 5px;
+}
+
+#display{
+  background-color: teal;
+  color: aliceblue;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 64px;
+  border: solid 1px #cacaca;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 30px;
+  font-family: sans-serif;
+  cursor: context-menu;
+  overflow: hidden;
+  max-width: 257px;
+}
+
+#teclas {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+#teclas > div:hover {
+  box-shadow: 2px 2px 1px #cacaca;
+}
+#teclas > div {
+  padding: 16px;
+  background-color: cornsilk;
+  border-radius: 5px;
+  box-shadow: 1px 1px #cacaca;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  color: teal;
+  font-size: 30px;
+  cursor: pointer;
+}
+#ce-key{
+  background-color:skyblue !important;
+  color: cornsilk !important;
+}

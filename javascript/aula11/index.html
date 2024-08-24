@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="inputs">
+
+    </div>
+   <script>
+    const apiURL = 'https://api.exchangeratesapi.io/v1/latest%20?%20access_key%20=%20b9bb8419898b74e9a71e2ea1a266c6a2'
+    fetch(apiURL)
+    .then(response => {
+        if(!response.ok){
+            throw new Error('A solicitação não foi bem-sucedida');
+        }
+        return response.json();
+    })
+    .then(data => {
+        const taxas = data.rates;
+        for(taxa od taxas){
+            const opcao = document.createElement('option');
+            opcao.innerText = `${taxa}`;
+            opcoes.appendChild(opcao);
+        }
+    })
+    .catch(error => {
+        alert('Erro: '+error.message);
+    })    
+   </script>
+</body>
+</html>
