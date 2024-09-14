@@ -1,0 +1,133 @@
+https://in100tiva.fillout.com/dev
+https://in100tiva.fillout.com/dev
+https://in100tiva.fillout.com/dev
+https://in100tiva.fillout.com/dev
+
+85 9 91401345
+85 9 91401345
+85 9 91401345
+85 9 91401345
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    Imagens de Gatos
+  </h1>
+  <button id="button">Reduzir o indice de odio!</button>
+  <div class="card">
+    <div id="catImages"> 
+      
+    </div>
+  </div>
+</body>
+</html>
+
+--------------------------
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #ccc9c9;
+}
+
+h1 {
+  color: #333;
+}
+
+button {
+  font-size: 18px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: #47cc47; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #56f556;
+}
+
+.card {
+  width: 300px;
+  height: 350px;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  border-radius: 10px;
+}
+
+#catImages {
+  width: 100%;
+  height: 100%;
+}
+
+#catImages img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  padding: 20px;
+}
+
+
+--------------------------
+
+const button = document.getElementById('button');
+const catImages = document.getElementById('catImages');
+
+button.addEventListener('click', fetchCatImages);
+
+
+function fetchCatImages() {
+  fetch('https://api.thecatapi.com/v1/images/search?limit=1')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error ('A sua solicitação não foi bem-sucedida.');
+      }
+      return response.json();
+    })
+
+    .then(data => {
+      const newImage = document.createElement('img');
+      newImage.src = data[0].url;
+      newImage.alt = 'imagem de gato';
+      newImage.style.opacity = '0'
+
+      catImages.appendChild(newImage);
+
+      setTimeout( () => {
+        newImage.style.opacity = '1';
+      }, 1000);
+
+      if (catImages.children.length > 1) {
+        setTimeout(() => {
+          catImages.removeChild(catImages.children[0]);
+        }, 500);
+      }
+    })
+
+    .catch(error => {
+      console.error('Erro:', error);
+      catImages.innerHTML = '<p class="error-message">Erro ao carregar a imagem. por favor, tente novamente.</p>';
+    });
+}
